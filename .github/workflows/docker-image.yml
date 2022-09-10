@@ -10,8 +10,8 @@ jobs:
     name: Build and push Docker image to registry
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
     - name: Checkout
+      uses: actions/checkout@v3
     - name: Tag
       id: tag
       uses: docker/metadata-action@v4
