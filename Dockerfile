@@ -10,14 +10,14 @@ COPY . .
 # run release build
 RUN cargo build --release
 
-# create final container using slim version of debian
-FROM debian:buster-slim
+# create final container using bitnami/minideb
+FROM bitnami/minideb
 
-# microbin will be in /usr/local/bin/microbin/
-WORKDIR /usr/local/bin
+# data stored in /data
+WORKDIR /data
 
-# copy built exacutable
+# copy built executable
 COPY --from=builder /usr/src/microbin/target/release/microbin /usr/local/bin/microbin
 
 # run the binary
-CMD ["microbin"]
+ENTRYPOINT ["/usr/local/bin/microbin"]
